@@ -36,7 +36,7 @@ public class AuthController {
             return "signup";
         }
 
-        if (userRepository.findByUsername(user.getUserName()) != null) {
+        if (userRepository.findByUserName(user.getUserName()) != null) {
             model.addAttribute("error", "Username already exists");
             return "signup";
         }
@@ -58,7 +58,7 @@ public class AuthController {
                         @RequestParam String password,
                         HttpSession session,
                         Model model) {
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findByUserName(username);
 
         if (user == null || !user.getPassword().equals(password)) {
             model.addAttribute("error", "Invalid username or password");
